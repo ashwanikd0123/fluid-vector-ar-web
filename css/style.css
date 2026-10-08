@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Fluid Vector AR - Official Website Stylesheet
+   Theme: Pro Darkroom Mode (#0F172A) with Tech Indigo (#4F46E5 / #818CF8)
+          and Electric Cyan (#06B6D4) Accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Brand Accents from COLOR_SCHEME.md */
+  --tech-indigo-light: #4F46E5;
+  --tech-indigo-dark: #818CF8;
+  --electric-cyan: #06B6D4;
+  --soft-cyan: #E0F2FE;
+  
+  /* Pro Darkroom Base */
+  --slate-bg-dark: #0F172A;
+  --surface-dark: #1E293B;
+  --surface-card: rgba(30, 41, 59, 0.7);
+  --border-dark: #334155;
+  --border-glow: rgba(6, 182, 212, 0.3);
+  
+  /* Text */
+  --text-primary-dark: #F1F5F9;
+  --text-secondary-dark: #94A3B8;
+  
+  /* Functional */
+  --system-success: #10B981;
+  --system-danger: #F43F5E;
+  --selection-blue: #2196F3;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color-scheme: dark;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4F46E5;
+}
+
+/* Background Grids & Ambient Lights */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(51, 65, 85, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+}
+
+.ambient-glow-indigo {
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.22) 0%, rgba(79, 70, 229, 0) 70%);
+}
+
+.ambient-glow-cyan {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(6, 182, 212, 0) 70%);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15), 0 0 20px 0 rgba(79, 70, 229, 0.1);
+}
+
+/* Neon Glow & Text Effects */
+.text-glow-cyan {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.text-glow-indigo {
+  text-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+}
+
+.border-glow-cyan {
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+}
+
+/* Button & Badge Gradients */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #4338CA 0%, #0891B2 100%);
+  box-shadow: 0 8px 30px rgba(6, 182, 212, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #06B6D4;
+}
+
+/* Phone Mockup Frame */
+.phone-mockup-outer {
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 
+              0 0 0 1px rgba(255, 255, 255, 0.1),
+              0 0 50px rgba(79, 70, 229, 0.25);
+  border-radius: 44px;
+}
+
+.phone-screen {
+  border-radius: 38px;
+}
+
+/* Keyframe Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes reticleSweep {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, 45px);
+  }
+  50% {
+    transform: translate(-25px, 90px);
+  }
+  75% {
+    transform: translate(45px, 20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.animate-reticle {
+  animation: reticleSweep 9s ease-in-out infinite;
+}
+
+/* Interactive Reticle Demo Canvas */
+#reticle-demo-area {
+  cursor: crosshair;
+}
+
+/* Tab Active State */
+.studio-tab.active {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
+  border-color: rgba(6, 182, 212, 0.6);
+  color: #F1F5F9;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
+}
+
+/* Modal transitions */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.active .modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* Badge Glow Tag */
+.badge-neon {
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #38BDF8;
+}
+
+/* AR Mode Compass / 3D Grid Indicator */
+.ar-perspective-grid {
+  transform: perspective(600px) rotateX(60deg);
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.3) 1px, transparent 1px);
+}

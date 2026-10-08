@@ -1,0 +1,37 @@
+Create a modern, high-converting, and visually stunning single-page static landing page for my native Android application. 
+
+The website must be deployable directly to Vercel/Netlify as a standalone, production-ready `index.html` file (using Tailwind CSS via CDN, Google Fonts, and Lucide/FontAwesome icons, with smooth CSS animations).
+
+### Context & Design Specifications:
+1. **Project Details:** Read `@README.md` to extract the app's core value proposition, key native features, and architecture highlights.
+2. **Color Palette & Styling:** Strictly adhere to the color palette defined in `@COLOR_SCHEME.md` (match primary, secondary, surface, and accent tokens). Ensure modern UI styling with subtle gradients, soft glassmorphism, responsive cards, and clean typography.
+3. **Visual Mockups & Motion:** Include an interactive/animated hero section with an Android device frame mockup, feature showcase with hover transitions, and subtle entrance animations.
+4. **App icon:** check @images/app_icon.png
+
+### Required Sections:
+1. **Hero Section:**
+   - App title, catchy tagline, and hero description based on `@README.md`.
+   - Primary CTA: "Get on Google Play" badge with a subtle "Coming Soon / In Closed Beta" status tag.
+   - Clean preview mockup representing the Android app interface.
+
+2. **Feature Showcase:**
+   - Visual grid/cards detailing key capabilities (e.g., drawing tools, vector engine, export capabilities, native performance).
+   - Interactive hover cards with smooth elevation and icon animations.
+
+3. **Pricing & Support Tiers (Comparison Cards):**
+   - **Free / Basic (₹0):** All core drawing, vector tools, & local export features. Includes "Get Started" button.
+   - **Creator Tip Jar (₹49 / ₹99 / Custom):** Support independent development & fuel upcoming updates. Includes highlighted "Support Project" button.
+   - **Pro / AI (₹499 / month - Coming Soon):** Cloud sync, premium AI vector generation, and advanced tools. Includes "Join Waitlist" button.
+
+4. **Merchant Compliance & Policies (Crucial for Payment Gateway Approval):**
+   - Clean, professional footer or tabbed modal popups covering mandatory Indian Payment Aggregator policies:
+     - **Privacy Policy Link:** https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/privacy_policy.html
+     - **Terms of Service:** https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/terms_and_conditions.html
+     - **Refund & Cancellation Policy:** Explicit terms clarifying that voluntary tips/donations are non-refundable, and outline terms for future subscription billing.
+     - **Delivery / Fulfillment Policy:** Clarify that digital goods, licenses, or creator badges are delivered instantly within the app upon successful transaction.
+     - **Contact Us:** fluidcraftstudios@gmail.com
+
+### Technical Requirements:
+- Pure self-contained code in `index.html` and separate files css, js(no complex build steps, zero npm dependency required).
+- 100% mobile-responsive, accessible, and fast-loading.
+- Semantic HTML5 structure with SEO metadata tags.

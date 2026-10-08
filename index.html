@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Fluid Vector AR | Advanced Vector Studio & Live 3D AR Tracing for Android</title>
+  <meta name="title" content="Fluid Vector AR | Advanced Vector Studio & Live 3D AR Tracing for Android">
+  <meta name="description" content="State-of-the-art native Android vector illustration studio with Camera Stencil real-world tracing, Google ARCore 3D spatial projection, and zero-occlusion Virtual Reticle drawing.">
+  <meta name="keywords" content="Fluid Vector AR, Android Vector Drawing, ARCore Drawing, Camera Stencil Tracing, Tattoo Stencil App, Mural AR Projector, Jetpack Compose Drawing, SVG Vector Editor">
+  <meta name="author" content="FluidCraft Studios">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fluidvectorar.vercel.app/">
+  <meta property="og:title" content="Fluid Vector AR | Next-Gen Vector Drawing Studio">
+  <meta property="og:description" content="Infinite vector canvas, Google ARCore 3D spatial projection, live CameraX stencil tracing, and Virtual Reticle precision drawing on Android.">
+  <meta property="og:image" content="./images/app_icon.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://fluidvectorar.vercel.app/">
+  <meta property="twitter:title" content="Fluid Vector AR | Advanced Vector Studio">
+  <meta property="twitter:description" content="Bridging digital vector illustration with real-world tracing and 3D spatial AR on Android.">
+  <meta property="twitter:image" content="./images/app_icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./images/app_icon.png">
+  <link rel="apple-touch-icon" href="./images/app_icon.png">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              indigo: '#4F46E5',
+              indigoLight: '#818CF8',
+              cyan: '#06B6D4',
+              softCyan: '#E0F2FE',
+            },
+            slateDark: '#0F172A',
+            surfaceDark: '#1E293B',
+            borderDark: '#334155',
+            accentBlue: '#2196F3',
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fluid Vector AR",
+    "operatingSystem": "Android 7.0 and up",
+    "applicationCategory": "DesignApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "description": "An Advanced Vector Drawing Studio with Live Camera Stencil Tracing & Interactive 3D Augmented Reality powered by Google ARCore and Jetpack Compose.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "FluidCraft Studios",
+      "email": "fluidcraftstudios@gmail.com"
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-[#0F172A] text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] ambient-glow-indigo rounded-full pointer-events-none -z-10 blur-3xl animate-pulse-glow"></div>
+  <div class="fixed top-1/3 right-10 w-[550px] h-[550px] ambient-glow-cyan rounded-full pointer-events-none -z-10 blur-3xl animate-pulse-glow" style="animation-delay: 2s;"></div>
+  <div class="fixed bottom-10 left-1/3 w-[500px] h-[500px] ambient-glow-indigo rounded-full pointer-events-none -z-10 blur-3xl opacity-30"></div>
+
+  <!-- ========================================================================
+       Navigation Bar
+       ======================================================================== -->
+  <header class="sticky top-0 z-40 w-full glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative w-11 h-11 rounded-xl p-0.5 bg-gradient-to-tr from-indigo-500 via-cyan-400 to-indigo-400 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+            <img src="./images/app_icon.png" alt="Fluid Vector AR Logo" class="w-full h-full rounded-[10px] object-cover bg-slate-900">
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
+              Fluid Vector <span class="text-cyan-400">AR</span>
+            </span>
+            <span class="text-[11px] font-mono text-slate-400 tracking-wider uppercase">Native Android Studio</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#features" class="hover:text-cyan-400 transition-colors">Features</a>
+          <a href="#studio-modes" class="hover:text-cyan-400 transition-colors">Studio Modes</a>
+          <a href="#reticle-tech" class="hover:text-cyan-400 transition-colors">Reticle Tech</a>
+          <a href="#use-cases" class="hover:text-cyan-400 transition-colors">Use Cases</a>
+          <a href="#pricing" class="hover:text-cyan-400 transition-colors">Pricing & Tip Jar</a>
+          <a href="#compliance" class="hover:text-cyan-400 transition-colors">Policies</a>
+        </nav>
+
+        <!-- Right CTA & Status Badge -->
+        <div class="hidden lg:flex items-center gap-4">
+          <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-mono text-cyan-300">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>Closed Beta v1.0</span>
+          </div>
+
+          <a href="#download-cta" class="btn-primary-gradient px-5 py-2.5 rounded-xl font-heading font-semibold text-sm text-white shadow-lg flex items-center gap-2">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.198-.31-.47-.31-.762V2.576c0-.292.112-.564.31-.762zM15.207 13.414l2.122 2.121-12.012 6.945 9.89-9.066zm2.122-4.95l-2.122 2.122-9.89-9.066 12.012 6.944zM18.742 12l2.365-1.365a1.077 1.077 0 000-1.87L18.742 12z"/>
+            </svg>
+            <span>Google Play</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" class="md:hidden p-2 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-nav-drawer" class="hidden md:hidden glass-panel border-b border-slate-800 px-6 py-6 space-y-4 transition-all duration-300 opacity-0 -translate-y-4">
+      <nav class="flex flex-col space-y-3 font-medium text-slate-300">
+        <a href="#features" class="mobile-nav-link hover:text-cyan-400 py-1">Features</a>
+        <a href="#studio-modes" class="mobile-nav-link hover:text-cyan-400 py-1">Studio Modes</a>
+        <a href="#reticle-tech" class="mobile-nav-link hover:text-cyan-400 py-1">Reticle Precision</a>
+        <a href="#use-cases" class="mobile-nav-link hover:text-cyan-400 py-1">Use Cases</a>
+        <a href="#pricing" class="mobile-nav-link hover:text-cyan-400 py-1">Pricing & Tip Jar</a>
+        <a href="#compliance" class="mobile-nav-link hover:text-cyan-400 py-1">Merchant Compliance</a>
+      </nav>
+      <div class="pt-4 border-t border-slate-700/60 flex flex-col gap-3">
+        <a href="#download-cta" class="mobile-nav-link btn-primary-gradient w-full py-3 rounded-xl font-heading font-semibold text-center text-white text-sm shadow-md">
+          Get on Google Play (Beta)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Hero Section
+       ======================================================================== -->
+  <section class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-grid-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+          
+          <!-- Early Access Pill -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-800/90 border border-indigo-500/30 text-xs font-mono text-slate-300 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-indigo-300 font-semibold">100% Kotlin & Jetpack Compose</span>
+            <span class="text-slate-500">•</span>
+            <span class="text-cyan-400">Google ARCore Studio</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-white">
+            Precision Vector Studio Meets <span class="bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent">Real-World 3D AR</span>
+          </h1>
+
+          <!-- Tagline & Description -->
+          <p class="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Bridging digital vector illustration, physical surface stencil tracing, and 3D spatial visualization. Draw with zero stylus lag, trace onto walls and skin with live CameraX overlays, and anchor vector artwork directly into physical reality.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            
+            <!-- Google Play Badge Button -->
+            <a href="#download-cta" class="w-full sm:w-auto btn-primary-gradient px-8 py-4 rounded-2xl font-heading font-bold text-base text-white shadow-xl shadow-cyan-500/20 flex items-center justify-center gap-3 group">
+              <svg class="w-6 h-6 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.198-.31-.47-.31-.762V2.576c0-.292.112-.564.31-.762zM15.207 13.414l2.122 2.121-12.012 6.945 9.89-9.066zm2.122-4.95l-2.122 2.122-9.89-9.066 12.012 6.944zM18.742 12l2.365-1.365a1.077 1.077 0 000-1.87L18.742 12z"/>
+              </svg>
+              <div class="text-left leading-tight">
+                <div class="text-[10px] uppercase font-mono tracking-wider opacity-80">Get on Google Play</div>
+                <div class="text-sm font-extrabold flex items-center gap-1.5">
+                  Closed Beta Preview
+                  <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded text-white font-normal">v1.0</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Secondary Demo Button -->
+            <a href="#studio-modes" class="w-full sm:w-auto btn-secondary-glass px-7 py-4 rounded-2xl font-heading font-semibold text-sm text-slate-200 flex items-center justify-center gap-2.5">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Explore Studio Interactive</span>
+            </a>
+          </div>
+
+          <!-- Performance & USP Badges -->
+          <div class="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+            <div class="glass-card p-3 rounded-xl border border-slate-800">
+              <div class="text-cyan-400 font-mono font-bold text-lg">0ms</div>
+              <div class="text-xs text-slate-400 font-medium">Input Jitter Lag</div>
+            </div>
+            <div class="glass-card p-3 rounded-xl border border-slate-800">
+              <div class="text-indigo-400 font-mono font-bold text-lg">5000%</div>
+              <div class="text-xs text-slate-400 font-medium">Infinite Zoom Scale</div>
+            </div>
+            <div class="glass-card p-3 rounded-xl border border-slate-800">
+              <div class="text-emerald-400 font-mono font-bold text-lg">Clean SVG</div>
+              <div class="text-xs text-slate-400 font-medium">Lossless Vector File</div>
+            </div>
+            <div class="glass-card p-3 rounded-xl border border-slate-800">
+              <div class="text-amber-400 font-mono font-bold text-lg">Reticle USP</div>
+              <div class="text-xs text-slate-400 font-medium">Draw Without Stylus</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Mockup Frame -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-[340px] sm:max-w-[370px]">
+            
+            <!-- Ambient phone glow -->
+            <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/30 via-cyan-500/20 to-purple-600/30 rounded-[50px] blur-2xl -z-10"></div>
+            
+            <!-- Android Phone Mockup Frame -->
+            <div class="phone-mockup-outer bg-slate-950 p-3.5 border-4 border-slate-700/80 shadow-2xl relative animate-float-slow">
+              
+              <!-- Phone Bezel & Screen -->
+              <div class="phone-screen bg-[#0F172A] overflow-hidden border border-slate-800/80 relative flex flex-col h-[670px]">
+                
+                <!-- Front Camera Punchhole -->
+                <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-black rounded-full border border-slate-800 flex items-center justify-center z-30">
+                  <div class="w-1.5 h-1.5 bg-blue-950 rounded-full"></div>
+                </div>
+
+                <!-- Android Status Bar -->
+                <div class="h-8 px-6 pt-1 flex items-center justify-between text-[11px] font-mono text-slate-400 z-20 shrink-0">
+                  <span>12:00</span>
+                  <div class="flex items-center gap-1.5">
+                    <span>5G</span>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                    <span>100%</span>
+                  </div>
+                </div>
+
+                <!-- In-App Top Bar (Jetpack Compose TopAppBar) -->
+                <div class="h-12 px-3 border-b border-slate-800 bg-slate-900/90 flex items-center justify-between z-20 shrink-0">
+                  <div class="flex items-center gap-2">
+                    <button class="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <div>
+                      <div class="text-xs font-semibold text-white truncate max-w-[110px]">CyberKitsune</div>
+                      <div class="text-[9px] font-mono text-cyan-400">240% • 4 Layers</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-1.5">
+                    <button class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center text-slate-300" title="Undo">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a5 5 0 015 5v2M3 10l6 6m-6-6l6-6"/></svg>
+                    </button>
+                    <button class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center text-slate-300" title="Redo">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10H11a5 5 0 00-5 5v2m15-7l-6-6m6 6l-6 6"/></svg>
+                    </button>
+                    <button class="w-7 h-7 rounded-lg bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 flex items-center justify-center" title="AR 3D Mode">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </button>
+                    <button class="w-7 h-7 rounded-lg bg-cyan-600/30 border border-cyan-500/40 text-cyan-300 flex items-center justify-center" title="Export">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Canvas Work Area -->
+                <div class="relative flex-1 bg-[#0F172A] overflow-hidden bg-grid-pattern">
+                  
+                  <!-- Vector Canvas SVG Illustration -->
+                  <svg class="w-full h-full" viewBox="0 0 320 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Layer 1: Ambient Cyber Circles -->
+                    <circle cx="160" cy="210" r="110" stroke="#334155" stroke-dasharray="4 6" stroke-width="1.2" opacity="0.4"/>
+                    <circle cx="160" cy="210" r="75" stroke="#4F46E5" stroke-width="1.5" opacity="0.3"/>
+                    <circle cx="160" cy="210" r="45" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
+
+                    <!-- Layer 2: Geometric Cyber Kitsune Mask (Cubic Bezier Vector Art) -->
+                    <g filter="drop-shadow(0 0 10px rgba(6, 182, 212, 0.4))">
+                      <!-- Ears -->
+                      <path d="M110 130 L160 85 L145 155 Z" stroke="#818CF8" stroke-width="3" fill="rgba(79, 70, 229, 0.15)" stroke-linejoin="round"/>
+                      <path d="M210 130 L160 85 L175 155 Z" stroke="#818CF8" stroke-width="3" fill="rgba(79, 70, 229, 0.15)" stroke-linejoin="round"/>
+                      
+                      <!-- Head Contour -->
+                      <path d="M90 190 Q160 160 230 190 Q225 250 160 290 Q95 250 90 190 Z" stroke="#06B6D4" stroke-width="3.5" fill="rgba(6, 182, 212, 0.08)" stroke-linejoin="round"/>
+                      
+                      <!-- Snout & Whisker Lines -->
+                      <path d="M140 240 L160 265 L180 240 Z" stroke="#818CF8" stroke-width="2.5" fill="#4F46E5"/>
+                      <path d="M160 265 L160 290" stroke="#06B6D4" stroke-width="2.5"/>
+                      
+                      <!-- Cyber Eyes (Glowing) -->
+                      <path d="M115 195 C125 185 140 190 145 200 C135 202 120 203 115 195 Z" fill="#06B6D4" stroke="#E0F2FE" stroke-width="1.5"/>
+                      <path d="M205 195 C195 185 180 190 175 200 C185 202 200 203 205 195 Z" fill="#06B6D4" stroke="#E0F2FE" stroke-width="1.5"/>
+
+                      <!-- Forehead Crest -->
+                      <path d="M160 140 L170 170 L160 185 L150 170 Z" fill="#818CF8" stroke="#06B6D4" stroke-width="2"/>
+                      
+                      <!-- Neon Whiskers -->
+                      <path d="M100 220 Q70 215 50 205" stroke="#06B6D4" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M95 235 Q65 240 45 245" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M220 220 Q250 215 270 205" stroke="#06B6D4" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M225 235 Q255 240 275 245" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Active drawing stroke with Cubic Bezier control points -->
+                    <path d="M160 290 C170 330 210 350 230 330" stroke="#06B6D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 3"/>
+                  </svg>
+
+                  <!-- Virtual Reticle Overlay Simulation -->
+                  <div class="absolute inset-0 pointer-events-none">
+                    
+                    <!-- Touch Point Indicator (User Finger) -->
+                    <div class="absolute w-8 h-8 rounded-full border-2 border-indigo-400/80 bg-indigo-500/20 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center animate-reticle" style="top: 360px; left: 195px;">
+                      <div class="w-2.5 h-2.5 rounded-full bg-indigo-400"></div>
+                      <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] font-mono text-indigo-300 whitespace-nowrap bg-slate-900/80 px-1 rounded">Finger Touch</span>
+                    </div>
+
+                    <!-- Offset Line -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                      <line x1="195" y1="360" x2="230" y2="330" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    </svg>
+
+                    <!-- Offset Reticle Crosshair (Target Stroke) -->
+                    <div class="absolute w-7 h-7 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center" style="top: 330px; left: 230px;">
+                      <div class="w-full h-full border border-cyan-400 rounded-full animate-ping opacity-60"></div>
+                      <div class="absolute w-full h-[1px] bg-cyan-400"></div>
+                      <div class="absolute h-full w-[1px] bg-cyan-400"></div>
+                      <div class="absolute w-1.5 h-1.5 bg-cyan-300 rounded-full shadow-lg shadow-cyan-400"></div>
+                      <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-mono text-cyan-300 whitespace-nowrap bg-slate-900/80 px-1 rounded">Reticle Offset</span>
+                    </div>
+                  </div>
+
+                  <!-- Floating In-App Chip 1: AR Spatial State -->
+                  <div class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md border border-cyan-500/30 px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 flex items-center gap-1.5 shadow-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span>ARCore 6-DoF Locked</span>
+                  </div>
+
+                  <!-- Floating In-App Chip 2: Layer Stack -->
+                  <div class="absolute top-3 right-3 bg-slate-900/85 backdrop-blur-md border border-slate-700 px-2.5 py-1 rounded-lg text-[10px] font-mono text-slate-300 flex items-center gap-1 shadow-md">
+                    <span class="text-indigo-400 font-bold">L4:</span>
+                    <span>Neon Glow Path</span>
+                  </div>
+
+                  <!-- Floating Reticle Calibration Floating Badge -->
+                  <div class="absolute bottom-20 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 px-3 py-1 rounded-full text-[10px] font-mono text-slate-300 flex items-center gap-2 shadow-lg">
+                    <span class="text-indigo-300">Offset:</span>
+                    <span class="text-cyan-300 font-bold">X: +0dp</span>
+                    <span class="text-cyan-300 font-bold">Y: -80dp</span>
+                  </div>
+
+                </div>
+
+                <!-- In-App Bottom Brush & Color Bar -->
+                <div class="h-20 border-t border-slate-800 bg-slate-900/95 px-3 flex flex-col justify-center gap-1.5 shrink-0 z-20">
+                  
+                  <!-- Brush Sliders & Swatches -->
+                  <div class="flex items-center justify-between px-1">
+                    <div class="flex items-center gap-2">
+                      <div class="w-5 h-5 rounded-full bg-cyan-400 ring-2 ring-cyan-300/40 ring-offset-2 ring-offset-slate-900 cursor-pointer"></div>
+                      <div class="w-4 h-4 rounded-full bg-indigo-500 opacity-60"></div>
+                      <div class="w-4 h-4 rounded-full bg-pink-500 opacity-60"></div>
+                      <div class="w-4 h-4 rounded-full bg-amber-400 opacity-60"></div>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-400">
+                      Stroke: <span class="text-cyan-400 font-semibold">3.5px</span>
+                    </div>
+                  </div>
+
+                  <!-- Brush Tool Selectors -->
+                  <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                    <button class="py-1 px-2 rounded-lg bg-indigo-600/30 border border-indigo-500/50 text-indigo-300 text-[11px] font-medium flex items-center justify-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                      <span>Pen</span>
+                    </button>
+                    <button class="py-1 px-2 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 text-[11px] font-medium flex items-center justify-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                      <span>Pencil</span>
+                    </button>
+                    <button class="py-1 px-2 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[11px] font-semibold flex items-center justify-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                      <span>Glow</span>
+                    </button>
+                    <button class="py-1 px-2 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 text-[11px] font-medium flex items-center justify-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                      <span>Eraser</span>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Studio Mode Switcher Showcase (Interactive In-Depth)
+       ======================================================================== -->
+  <section id="studio-modes" class="py-24 bg-slate-900/60 border-y border-slate-800/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+          Triple-Mode Engine
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">
+          Three Modes. One Unified Creative Powerhouse.
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Switch seamlessly between infinite digital drawing, physical surface stencil tracing with your phone camera, and immersive 3D spatial projection.
+        </p>
+      </div>
+
+      <!-- Tab Controller -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+        <button class="studio-tab active px-5 py-3 rounded-xl border border-slate-700 bg-slate-800/80 text-sm font-semibold flex items-center gap-2.5 transition-all" data-mode="vector">
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          <span>1. Vector Studio</span>
+        </button>
+        <button class="studio-tab px-5 py-3 rounded-xl border border-slate-700 bg-slate-800/80 text-sm font-semibold flex items-center gap-2.5 transition-all" data-mode="camera">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+          <span>2. Live Camera Stencil Tracing</span>
+        </button>
+        <button class="studio-tab px-5 py-3 rounded-xl border border-slate-700 bg-slate-800/80 text-sm font-semibold flex items-center gap-2.5 transition-all" data-mode="ar">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span>3. 3D AR Spatial Mode (ARCore)</span>
+        </button>
+      </div>
+
+      <!-- Mode Content Display -->
+      <div class="glass-panel p-6 sm:p-10 rounded-3xl border border-slate-700/80 shadow-2xl">
+        
+        <!-- Mode 1: Vector Drawing Studio -->
+        <div id="mockup-mode-vector" class="flex flex-col lg:flex-row items-center gap-10">
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div class="inline-block px-3 py-1 rounded-md bg-indigo-500/20 text-indigo-300 font-mono text-xs font-semibold">
+              ENGINE: CUBIC BEZIER SMOOTHING
+            </div>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+              Infinite Canvas with Zero-Jitter Stroke Interpolation
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Engineered with custom quadratic and cubic Bezier curve math (`Path.cubicTo`). Pan and pinch-to-zoom up to 5000% scale factor without raster pixelation. Full stack undo/redo operations and non-destructive vector layers.
+            </p>
+            <div class="space-y-3 font-mono text-xs text-slate-300">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>4 Core Brushes: Solid Pen, Grain Charcoal Pencil, Dynamic Gaussian Glow, Mask Eraser</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Full HSV/RGB Color Picker with hex code manual input and custom project palettes</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Multi-Layer Management: Reorder, hide, lock, duplicate, and adjust individual layer opacity</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="w-full lg:w-1/2 bg-slate-950 p-6 rounded-2xl border border-slate-800 relative overflow-hidden h-[340px] flex items-center justify-center">
+            <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+            <!-- Interactive visual preview -->
+            <div class="relative z-10 text-center space-y-4">
+              <div class="w-20 h-20 rounded-2xl bg-indigo-600/30 border border-indigo-400/50 mx-auto flex items-center justify-center text-indigo-300 shadow-xl shadow-indigo-500/20">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              </div>
+              <div class="font-heading font-bold text-lg text-white">Infinite Vector Canvas Active</div>
+              <div class="text-xs font-mono text-cyan-400">Scale: 5000% • Interpolation: Quadratic/Cubic Bezier • Layers: 4 Active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode 2: Live Camera Stencil Tracing -->
+        <div id="mockup-mode-camera" class="hidden flex-col lg:flex-row items-center gap-10">
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div class="inline-block px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono text-xs font-semibold">
+              HARDWARE: CAMERAX HIGH-FRAMERATE FEED
+            </div>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+              Real-World Surface Stencil Tracing
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Place your phone on a stand or hold it over paper, skin, walls, shoes, or custom canvas. Fluid Vector AR renders your vector lines directly over the physical camera preview with real-time opacity blending.
+            </p>
+            <div class="space-y-3 font-mono text-xs text-slate-300">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Real-Time Opacity Slider: Blend stencil transparency from 0% to 100% seamlessly</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Hardware Flashlight / Torch toggle & Front/Rear camera switching for dim environments</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Snapshot Capture: Save combined physical surface + stencil overlay in high resolution</span>
+              </div>
+            </div>
+
+            <!-- Stencil Opacity Slider Widget -->
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-300">Live Tracing Stencil Opacity</span>
+                <span id="mockup-stencil-val" class="text-emerald-400 font-bold">50%</span>
+              </div>
+              <input id="mockup-stencil-slider" type="range" min="10" max="100" value="50" class="w-full accent-emerald-400 cursor-pointer">
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2 bg-slate-950 p-6 rounded-2xl border border-slate-800 relative overflow-hidden h-[340px] flex items-center justify-center">
+            <!-- Simulated camera background -->
+            <div class="absolute inset-0 bg-slate-800 opacity-60 flex items-center justify-center">
+              <div class="text-center opacity-30 font-mono text-sm">
+                [ Live CameraX Physical Feed: Paper / Surface ]
+              </div>
+            </div>
+            <!-- Overlay vector stencil -->
+            <div id="camera-stencil-vector" class="relative z-10 p-6 border-2 border-emerald-400/80 rounded-2xl bg-emerald-950/30 text-emerald-300 font-mono text-center transition-opacity" style="opacity: 0.5;">
+              <svg class="w-28 h-28 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <div class="mt-2 text-xs font-bold uppercase tracking-wider">Tattoo / Mural Stencil Active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode 3: 3D AR Spatial Mode -->
+        <div id="mockup-mode-ar" class="hidden flex-col lg:flex-row items-center gap-10">
+          <div class="w-full lg:w-1/2 space-y-6">
+            <div class="inline-block px-3 py-1 rounded-md bg-cyan-500/20 text-cyan-300 font-mono text-xs font-semibold">
+              USP: GOOGLE ARCORE & SCENEVIEW
+            </div>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+              Anchor 2D Vector Artwork in 3D Real Space
+            </h3>
+            <p class="text-slate-300 leading-relaxed">
+              Step back from your desk and project your illustrations directly onto building walls, room ceilings, or floor planes. Uses Google ARCore spatial anchors for rock-solid 6 Degrees of Freedom tracking.
+            </p>
+            <div class="space-y-3 font-mono text-xs text-slate-300">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>3D Translation: Adjust X, Y, and Z depth plane (-5m to -0.2m) freely</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>3-Axis Full Rotation: Precise control over Pitch (X), Yaw (Y), and Roll (Z)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Pinch-to-scale directly inside AR physical space with double-tap alignment reset</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2 bg-slate-950 p-6 rounded-2xl border border-slate-800 relative overflow-hidden h-[340px] flex items-center justify-center">
+            <!-- 3D Perspective Grid -->
+            <div class="absolute inset-0 ar-perspective-grid opacity-50"></div>
+            <!-- 3D Anchor Indicator -->
+            <div class="relative z-10 text-center space-y-3">
+              <div class="w-20 h-20 rounded-2xl bg-cyan-500/20 border-2 border-cyan-400 mx-auto flex items-center justify-center text-cyan-300 shadow-2xl shadow-cyan-500/40 animate-pulse">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/></svg>
+              </div>
+              <div class="text-white font-heading font-bold text-base">AR Plane Detected & Locked</div>
+              <div class="text-xs font-mono text-indigo-300">Pitch: +12° • Yaw: -4° • Depth (Z): -1.4m</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       USP Feature: Virtual Reticle Precision Simulator
+       ======================================================================== -->
+  <section id="reticle-tech" class="py-24 relative overflow-hidden bg-dot-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+            KILLER ACCESSIBILITY USP
+          </div>
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
+            The Virtual Reticle: <br>
+            <span class="text-cyan-400">Zero-Occlusion</span> Finger Drawing
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Drawing with a finger on a smartphone has always suffered from the classic <strong class="text-white">"fat-finger occlusion problem"</strong>: your fingertip covers the exact point you are trying to illustrate.
+          </p>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Fluid Vector AR solves this natively with an adjustable <strong class="text-indigo-400">Virtual Reticle Pointer</strong>. Touch anywhere, and the active stroke is drawn at a calibrated crosshair offset above your touch point. 100% visibility. Zero stylus required.
+          </p>
+
+          <!-- Interactive Calibration Controls -->
+          <div class="bg-slate-900/90 border border-slate-700/80 p-5 rounded-2xl space-y-4">
+            <div class="text-xs font-mono uppercase text-slate-400 tracking-wider font-semibold">
+              Interactive Calibration Simulator
+            </div>
+            
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-300">X-Axis Offset</span>
+                <span id="reticle-val-x" class="text-cyan-400 font-bold">0px</span>
+              </div>
+              <input id="reticle-slider-x" type="range" min="-120" max="120" value="0" class="w-full accent-cyan-400 cursor-pointer">
+            </div>
+
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-300">Y-Axis Offset (Elevation)</span>
+                <span id="reticle-val-y" class="text-cyan-400 font-bold">-80px</span>
+              </div>
+              <input id="reticle-slider-y" type="range" min="-150" max="20" value="-80" class="w-full accent-cyan-400 cursor-pointer">
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Playground Canvas Box -->
+        <div class="lg:col-span-6">
+          <div class="glass-card p-6 rounded-3xl border border-slate-700/80 shadow-2xl space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
+              <span>Interactive Simulator: Drag cursor/touch below</span>
+              <span class="text-cyan-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Live Active
+              </span>
+            </div>
+
+            <!-- Playground Area -->
+            <div id="reticle-demo-area" class="w-full h-[360px] bg-slate-950 rounded-2xl border-2 border-slate-800 relative overflow-hidden select-none bg-grid-pattern">
+              
+              <!-- Instructions helper text inside -->
+              <div class="absolute top-4 left-4 text-xs font-mono text-slate-500 pointer-events-none">
+                Move mouse or finger inside this canvas
+              </div>
+
+              <!-- Connecting Line SVG -->
+              <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                <line id="demo-connector-line" x1="180" y1="160" x2="180" y2="80" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.8"/>
+              </svg>
+
+              <!-- Touch Point Indicator (Simulated Finger) -->
+              <div id="demo-touch-point" class="absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/25 border-2 border-indigo-400 pointer-events-none flex items-center justify-center transition-transform" style="top: 160px; left: 180px;">
+                <div class="w-3 h-3 rounded-full bg-indigo-400"></div>
+                <span class="absolute -bottom-5 text-[10px] font-mono text-indigo-300 whitespace-nowrap bg-slate-900/90 px-1.5 py-0.5 rounded border border-indigo-500/30">Your Finger</span>
+              </div>
+
+              <!-- Offset Reticle Target (Active Drawing Point) -->
+              <div id="demo-reticle-point" class="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style="top: 80px; left: 180px;">
+                <div class="w-full h-full border border-cyan-400 rounded-full animate-ping opacity-50"></div>
+                <div class="absolute w-full h-[1.5px] bg-cyan-400"></div>
+                <div class="absolute h-full w-[1.5px] bg-cyan-400"></div>
+                <div class="absolute w-2 h-2 bg-cyan-300 rounded-full shadow-lg shadow-cyan-400"></div>
+                <span class="absolute -top-6 text-[10px] font-mono text-cyan-300 whitespace-nowrap bg-slate-900/90 px-1.5 py-0.5 rounded border border-cyan-500/40 font-bold">Unobstructed Vector Stroke</span>
+              </div>
+
+            </div>
+
+            <div class="text-[11px] text-slate-400 text-center font-mono pt-1">
+              Notice how the target stroke is completely visible and elevated above your touch point!
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Comprehensive Feature Showcase Grid
+       ======================================================================== -->
+  <section id="features" class="py-24 bg-slate-900/40 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-mono text-indigo-300">
+          ARCHITECTURE & CAPABILITIES
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-5xl text-white">
+          Engineered for Pro Creative Workflow
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Built with Android Clean Architecture, MVVM, and Room DB for zero data loss and uncompromised real-time drawing performance.
+        </p>
+      </div>
+
+      <!-- Feature Grid Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Infinite Vector Canvas</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Pinch-to-zoom up to 5,000% scale factor, 2-finger free pan, double-tap canvas reset, and customizable guideline overlays. Silky cubic Bezier stroke math for ultra-smooth lines.
+          </p>
+          <div class="pt-2 text-xs font-mono text-indigo-300 flex items-center gap-1.5">
+            <span>Room DB Persistence</span> • <span>Full Stack Undo/Redo</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Google ARCore 3D Engine</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Project vector art onto 3D physical spaces with SceneView integration. Adjust X, Y, and Z depth planes (-5m to -0.2m) and 3-axis rotation (Pitch, Yaw, Roll) to preview murals and sketches in reality.
+          </p>
+          <div class="pt-2 text-xs font-mono text-cyan-300 flex items-center gap-1.5">
+            <span>6-DoF Tracking</span> • <span>Spatial Anchor Locking</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">CameraX Stencil Tracing</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            High framerate live camera feed overlay beneath vector layers. Real-time alpha blending slider, flashlight/torch toggle, front/back camera flip, and snapshot capture for physical surface tracing.
+          </p>
+          <div class="pt-2 text-xs font-mono text-emerald-300 flex items-center gap-1.5">
+            <span>Paper, Wall & Skin Tracing</span> • <span>Tap-to-Focus</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-purple-600/20 border border-purple-500/30 text-purple-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Multi-Layer Management</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Create independent vector layers. Drag-and-drop layer reordering, opacity controls, toggleable visibility, and stroke selection for surgical vector edits and non-destructive eraser masking.
+          </p>
+          <div class="pt-2 text-xs font-mono text-purple-300 flex items-center gap-1.5">
+            <span>Independent Stacks</span> • <span>Layer Masking</span>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-600/20 border border-amber-500/30 text-amber-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Scalable Export Engine</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Export directly to clean standardized SVG preserving layer structures, filters, and paths. Also export to high-resolution transparent PNG or custom quality JPEG with flexible aspect ratios.
+          </p>
+          <div class="pt-2 text-xs font-mono text-amber-300 flex items-center gap-1.5">
+            <span>Standard SVG XML</span> • <span>Ultra-HD PNG & JPEG</span>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-5">
+          <div class="w-12 h-12 rounded-2xl bg-rose-600/20 border border-rose-500/30 text-rose-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Firebase Auth & Offline DB</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Seamless Google Identity & Firebase Auth alongside Android Credential Manager API. Local-first Room DB ensures that 100% of your projects remain accessible offline with zero network dependency.
+          </p>
+          <div class="pt-2 text-xs font-mono text-rose-300 flex items-center gap-1.5">
+            <span>Offline-First</span> • <span>DataStore Preferences</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Target Audience & Real-World Use Cases
+       ======================================================================== -->
+  <section id="use-cases" class="py-24 bg-slate-950 border-t border-slate-800 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+          DESIGNED FOR CREATORS
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-5xl text-white">
+          Who is Fluid Vector AR Built For?
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          From physical tattoo parlors to city murals and digital sketchbooks, empowering precision artists everywhere.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Use Case 1 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+            01
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Tattoo Artists</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Trace designs directly onto skin contours using Camera Stencil mode. Preview spatial placement in 3D AR before laying permanent needle ink.
+          </p>
+        </div>
+
+        <!-- Use Case 2 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+            02
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Mural & Street Painters</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Eliminate bulky analog overhead projectors. Anchor vector illustrations onto building walls in 3D AR space and trace large-scale outlines directly.
+          </p>
+        </div>
+
+        <!-- Use Case 3 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            03
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Shoe & Craft Customizers</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Align intricate vector patterns over sneakers, leather jackets, wood, and canvases with calibrated camera transparency blending.
+          </p>
+        </div>
+
+        <!-- Use Case 4 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+            04
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Stylus-Free Illustrators</h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Draw professional artwork on phones without buying an expensive S-Pen or stylus. The Virtual Reticle gives you 100% unobstructed vector drawing.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Pricing & Support Tiers (Comparison Cards)
+       ======================================================================== -->
+  <section id="pricing" class="py-24 bg-slate-900/50 border-t border-slate-800 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+          TRANSPARENT VALUE
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-5xl text-white">
+          Simple, Fair & Independent
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          No forced paywalls. Core tools are 100% free forever. Support independent open software or join the upcoming Pro AI waitlist.
+        </p>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Free / Basic -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between space-y-8">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Starter Tier</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Forever Free</span>
+            </div>
+            
+            <div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading font-black text-4xl sm:text-5xl text-white">₹0</span>
+                <span class="text-slate-400 text-sm font-medium">/ free forever</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mt-2">
+                Everything you need to create vector artwork and trace real surfaces locally.
+              </p>
+            </div>
+
+            <div class="space-y-3 border-t border-slate-800 pt-6 text-sm text-slate-300 font-normal">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Full Infinite Vector Canvas (5000% zoom)</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>All 4 Brush Engines (Pen, Pencil, Glow, Eraser)</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Virtual Reticle Pointer Calibration</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>CameraX Stencil Mode Tracing</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Google ARCore 3D Spatial Projection</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Local SVG, PNG, and JPEG Exporters</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#download-cta" class="w-full btn-secondary-glass py-3.5 rounded-xl font-heading font-semibold text-center text-white text-sm">
+            Get Started Free
+          </a>
+        </div>
+
+        <!-- Tier 2: Creator Tip Jar (Highlighted / Featured) -->
+        <div class="glass-card p-8 rounded-3xl border-2 border-cyan-400/80 shadow-2xl relative flex flex-col justify-between space-y-8 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-indigo-950/40">
+          
+          <!-- Highlight Badge -->
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg">
+            ⭐ Creator Favorite
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-wider text-cyan-300 font-bold">Tip Jar Support</span>
+              <span class="px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 text-xs font-mono">Fuel Indie Dev</span>
+            </div>
+            
+            <div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading font-black text-4xl sm:text-5xl text-white">₹49 / ₹99</span>
+                <span class="text-slate-400 text-sm font-medium">/ one-time tip</span>
+              </div>
+              <p class="text-cyan-200/90 text-xs sm:text-sm mt-2">
+                Support independent developer maintenance, GPU hosting, and accelerate new feature releases.
+              </p>
+            </div>
+
+            <div class="space-y-3 border-t border-slate-700/80 pt-6 text-sm text-slate-200 font-normal">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Includes <strong class="text-white">All Free Tier</strong> capabilities</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Exclusive <strong class="text-white">In-App Supporter Badge</strong></span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Priority beta testing for new ARCore modules</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Direct feature request channel to founder</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Instant fulfillment: active instantly in-app</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="open-tip-jar-btn w-full btn-primary-gradient py-4 rounded-xl font-heading font-bold text-center text-white text-sm shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 fill-current text-amber-300" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Support Project (Tip Jar)</span>
+          </button>
+        </div>
+
+        <!-- Tier 3: Pro / AI (Coming Soon) -->
+        <div class="glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between space-y-8 opacity-90">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-wider text-purple-300 font-semibold">Pro & Cloud</span>
+              <span class="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 text-xs font-mono">Coming Soon</span>
+            </div>
+            
+            <div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading font-black text-4xl sm:text-5xl text-white">₹499</span>
+                <span class="text-slate-400 text-sm font-medium">/ month</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mt-2">
+                Cloud sync, team collaboration, and AI vector generation suite.
+              </p>
+            </div>
+
+            <div class="space-y-3 border-t border-slate-800 pt-6 text-sm text-slate-300 font-normal">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Automated Cross-Device Cloud Sync</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>AI Photo-to-Vector Auto-Tracing</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Cloud Multi-User Collaborative Canvas</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Persistent Shared Cloud AR Anchors</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>VIP Priority Customer Support SLA</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="open-waitlist-btn w-full btn-secondary-glass py-3.5 rounded-xl font-heading font-semibold text-center text-purple-300 text-sm border-purple-500/30 hover:border-purple-400">
+            Join Pro Waitlist
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Merchant Compliance & Policies (Payment Gateway Approval Standard)
+       ======================================================================== -->
+  <section id="compliance" class="py-20 bg-slate-950 border-t border-slate-800 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+          MERCHANT DISCLOSURE & LEGAL COMPLIANCE
+        </div>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white">
+          Indian Payment Aggregator Compliance & Policies
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Fluid Vector AR operates under transparent merchant terms adhering to standard guidelines for digital goods, instant electronic delivery, and user dispute handling.
+        </p>
+      </div>
+
+      <!-- Quick Compliance Badges Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        
+        <!-- Compliance Card 1: Refund Policy -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm">₹</span>
+            <button class="text-xs font-mono text-cyan-400 hover:underline" data-open-modal="refund">View Policy →</button>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white">Refund & Cancellation</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Voluntary creator tips are non-refundable. Future recurring subscription renewals can be cancelled anytime before cycle.
+          </p>
+        </div>
+
+        <!-- Compliance Card 2: Delivery & Fulfillment -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </span>
+            <button class="text-xs font-mono text-cyan-400 hover:underline" data-open-modal="delivery">View Policy →</button>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white">Instant Fulfillment</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Digital goods, in-app licenses, and supporter badges are delivered electronically and unlocked immediately upon transaction confirmation.
+          </p>
+        </div>
+
+        <!-- Compliance Card 3: Terms of Service -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </span>
+            <button class="text-xs font-mono text-cyan-400 hover:underline" data-open-modal="terms">Summary →</button>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white">Terms of Service</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Legal conditions governing vector software usage, local device storage rights, and acceptable use guidelines.
+          </p>
+          <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/terms_and_conditions.html" target="_blank" rel="noopener noreferrer" class="inline-block text-[11px] text-cyan-300 underline font-mono">
+            Official Legal Document ↗
+          </a>
+        </div>
+
+        <!-- Compliance Card 4: Privacy Policy -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </span>
+            <button class="text-xs font-mono text-cyan-400 hover:underline" data-open-modal="privacy">Summary →</button>
+          </div>
+          <h3 class="font-heading font-bold text-base text-white">Privacy Policy</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Zero vector data sale. Drawings are stored locally on your device. Camera feed is processed in-memory for preview only.
+          </p>
+          <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/privacy_policy.html" target="_blank" rel="noopener noreferrer" class="inline-block text-[11px] text-cyan-300 underline font-mono">
+            Official Legal Document ↗
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Merchant Contact & SLA Disclosure Box -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-2">
+          <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">
+            Merchant / Operating Entity
+          </div>
+          <div class="font-heading font-bold text-lg text-white">FluidCraft Studios</div>
+          <p class="text-slate-400 text-xs sm:text-sm max-w-xl">
+            Developer & Publisher: Ashwani Kumar • Official Support Desk: <strong class="text-slate-200">fluidcraftstudios@gmail.com</strong>. All customer queries and grievance tickets acknowledged within 24-48 business hours.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <button type="button" class="btn-secondary-glass px-4 py-2.5 rounded-xl text-xs font-mono text-slate-200 flex items-center gap-2" data-open-modal="contact">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Contact Desk Details</span>
+          </button>
+          <button id="copy-email-btn" type="button" class="btn-primary-gradient px-4 py-2.5 rounded-xl text-xs font-mono font-semibold text-white flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span>Copy Support Email</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Frequently Asked Questions (FAQ Accordion)
+       ======================================================================== -->
+  <section class="py-24 bg-slate-900/30 border-t border-slate-800/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Everything you need to know about compatibility, hardware, and privacy.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-base font-heading font-semibold text-white">
+            <span>Do I need an expensive stylus (like S-Pen) to draw?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            No! One of the core USPs of Fluid Vector AR is the <strong class="text-cyan-300">Virtual Reticle Pointer</strong>. It calibrates an offset crosshair target above your touch point, so your finger never blocks the stroke being drawn. You can draw with fine vector precision with bare hands.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-base font-heading font-semibold text-white">
+            <span>Which Android devices support the 3D AR mode?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            The 3D AR projection feature requires an Android device that supports <strong class="text-indigo-300">Google Play Services for AR (Google ARCore)</strong> running Android 7.0 (API 24) or newer. Most modern devices from Samsung, Google Pixel, Xiaomi, OnePlus, and Motorola are supported. The 2D Vector Drawing and CameraX Stencil modes work on all compatible Android devices.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-base font-heading font-semibold text-white">
+            <span>Can I export vector files to Adobe Illustrator, Inkscape, or Figma?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            Yes! Fluid Vector AR exports standard W3C-compliant <strong class="text-cyan-300">SVG (Scalable Vector Graphics)</strong> files. You can open, edit, and print your artwork in Adobe Illustrator, Inkscape, Figma, CorelDRAW, or any professional CAD/vector software without loss of resolution.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-base font-heading font-semibold text-white">
+            <span>Are my drawings uploaded to any cloud server?</span>
+            <svg class="faq-icon w-5 h-5 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            No. Your vector drawings and project databases are stored 100% locally on your Android device using SQLite/Room DB. We do not transmit or sell your creative artwork to any third parties.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Download & Call To Action Section
+       ======================================================================== -->
+  <section id="download-cta" class="py-24 relative overflow-hidden bg-gradient-to-b from-slate-900 to-[#0F172A] border-t border-slate-800">
+    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+      
+      <!-- App Icon Glowing Container -->
+      <div class="w-24 h-24 mx-auto rounded-3xl p-1 bg-gradient-to-tr from-indigo-500 via-cyan-400 to-indigo-300 shadow-2xl shadow-cyan-500/30">
+        <img src="./images/app_icon.png" alt="Fluid Vector AR" class="w-full h-full rounded-[22px] object-cover bg-slate-900">
+      </div>
+
+      <h2 class="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight">
+        Ready to Transform How You Draw & Trace?
+      </h2>
+
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+        Join the Fluid Vector AR closed beta on Google Play. Zero subscriptions required for core tools. Start sketching, tracing, and visualizing in 3D AR today.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        
+        <!-- Primary Google Play Badge -->
+        <a href="https://play.google.com/store/apps" target="_blank" rel="noopener noreferrer" class="btn-primary-gradient px-8 py-4 rounded-2xl font-heading font-bold text-white text-base shadow-xl flex items-center gap-3">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186c-.198-.198-.31-.47-.31-.762V2.576c0-.292.112-.564.31-.762zM15.207 13.414l2.122 2.121-12.012 6.945 9.89-9.066zm2.122-4.95l-2.122 2.122-9.89-9.066 12.012 6.944zM18.742 12l2.365-1.365a1.077 1.077 0 000-1.87L18.742 12z"/>
+          </svg>
+          <div class="text-left leading-tight">
+            <div class="text-[10px] uppercase font-mono tracking-wider opacity-80">Download on</div>
+            <div class="text-lg font-black">Google Play Store</div>
+          </div>
+        </a>
+
+        <!-- Tip Jar Support Trigger -->
+        <button type="button" class="open-tip-jar-btn btn-secondary-glass px-7 py-4 rounded-2xl font-heading font-semibold text-slate-200 text-sm flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span>Support Indie Developer (Tip Jar)</span>
+        </button>
+
+      </div>
+
+      <!-- Closed Beta Note -->
+      <div class="pt-2 text-xs font-mono text-slate-400 flex items-center justify-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span>Google Play Closed Beta • Kotlin 2.1+ • Target SDK 35/37</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Footer & Merchant Disclosures
+       ======================================================================== -->
+  <footer class="bg-[#0B1120] border-t border-slate-800 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        
+        <!-- Brand Summary -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="./images/app_icon.png" alt="Fluid Vector AR" class="w-9 h-9 rounded-xl object-cover bg-slate-900 border border-slate-700">
+            <span class="font-heading font-extrabold text-lg text-white">
+              Fluid Vector <span class="text-cyan-400">AR</span>
+            </span>
+          </div>
+          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+            High-precision vector illustration studio for Android with CameraX stencil tracing, Google ARCore 3D projection, and zero-occlusion Virtual Reticle finger drawing.
+          </p>
+          <div class="text-xs font-mono text-slate-400">
+            Published by <strong class="text-slate-200">FluidCraft Studios</strong>
+          </div>
+        </div>
+
+        <!-- Links: Product -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider font-mono">Product</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#features" class="hover:text-cyan-400 transition-colors">Vector Engine</a></li>
+            <li><a href="#studio-modes" class="hover:text-cyan-400 transition-colors">Camera Stencils</a></li>
+            <li><a href="#studio-modes" class="hover:text-cyan-400 transition-colors">3D AR Space</a></li>
+            <li><a href="#reticle-tech" class="hover:text-cyan-400 transition-colors">Virtual Reticle USP</a></li>
+            <li><a href="#pricing" class="hover:text-cyan-400 transition-colors">Pricing & Tip Jar</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Mandatory Compliance Policies -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider font-mono">Legal Policies</h4>
+          <ul class="space-y-2 text-xs">
+            <li>
+              <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/terms_and_conditions.html" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                <span>Terms of Service</span>
+                <span class="text-[10px] text-cyan-400">↗</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/privacy_policy.html" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                <span>Privacy Policy</span>
+                <span class="text-[10px] text-cyan-400">↗</span>
+              </a>
+            </li>
+            <li><button type="button" class="hover:text-cyan-400 transition-colors" data-open-modal="refund">Refund & Cancellation</button></li>
+            <li><button type="button" class="hover:text-cyan-400 transition-colors" data-open-modal="delivery">Delivery / Fulfillment</button></li>
+            <li><button type="button" class="hover:text-cyan-400 transition-colors" data-open-modal="contact">Grievance & Contact</button></li>
+          </ul>
+        </div>
+
+        <!-- Links: Contact & Support Desk -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-white uppercase tracking-wider font-mono">Support</h4>
+          <div class="space-y-2 text-xs">
+            <div class="text-slate-300 font-medium">FluidCraft Studios Support Desk</div>
+            <a href="mailto:fluidcraftstudios@gmail.com" class="text-cyan-400 font-mono hover:underline break-all block">
+              fluidcraftstudios@gmail.com
+            </a>
+            <div class="text-slate-500 text-[11px] font-mono">
+              Response SLA: 24 to 48 Hours
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Disclaimer & Payment Aggregator Badges -->
+      <div class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
+        <div>
+          © 2026 Fluid Vector AR by FluidCraft Studios. All rights reserved.
+        </div>
+        
+        <!-- Payment Methods Accepted / Aggregator compliance -->
+        <div class="flex items-center gap-3">
+          <span class="text-slate-400">Supported Payments:</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">UPI</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">RuPay</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Cards</span>
+          <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">NetBanking</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL 1: Merchant Compliance Policies (Tabbed / Single-view Popups)
+       ======================================================================== -->
+  <div id="policy-modal-backdrop" class="modal-backdrop fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    
+    <div class="modal-dialog relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl p-6 sm:p-8 max-h-[85vh] overflow-y-auto">
+      
+      <!-- Close button -->
+      <button type="button" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors" data-close-modal>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Sub-view 1: Refund & Cancellation Policy -->
+      <div id="modal-refund-policy" class="hidden space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">₹</div>
+          <div>
+            <h3 class="font-heading font-bold text-xl text-white">Refund & Cancellation Policy</h3>
+            <p class="text-xs font-mono text-slate-400">Merchant Disclosure for FluidCraft Studios</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-4">
+          <p>
+            At <strong>Fluid Vector AR (FluidCraft Studios)</strong>, we strive to maintain transparent policies in accordance with Indian payment gateway standards and consumer protection norms.
+          </p>
+
+          <h4 class="font-bold text-white uppercase font-mono text-xs text-cyan-300">1. Voluntary Creator Tip Jar Donations</h4>
+          <p>
+            Contributions made under the <em>Creator Tip Jar</em> (e.g., ₹49, ₹99, or custom tips) are voluntary contributions made directly to support independent software maintenance and development. Because these represent voluntary creator gratuity for which digital supporter badges are delivered immediately, <strong>tips and donations are non-refundable</strong> once a transaction is successfully settled.
+          </p>
+
+          <h4 class="font-bold text-white uppercase font-mono text-xs text-cyan-300">2. Upcoming Pro Subscriptions & Recurring Plans</h4>
+          <p>
+            When subscription tiers (e.g. Pro / AI Cloud Sync) go live:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>You may cancel your recurring subscription at any time prior to the next billing cycle via Google Play Subscriptions or your account dashboard.</li>
+            <li>Upon cancellation, your Pro benefits remain active until the end of the current billing cycle. No further renewal charges will occur.</li>
+            <li>If a billing error or double-charge occurs due to technical gateway issues, please contact our support desk with your transaction reference. Verified duplicate charges will be refunded to the original payment source within 5 to 7 business days.</li>
+          </ul>
+
+          <h4 class="font-bold text-white uppercase font-mono text-xs text-cyan-300">3. Contact for Inquiries</h4>
+          <p>
+            For any dispute, receipt query, or payment assistance, email us at: <a href="mailto:fluidcraftstudios@gmail.com" class="text-cyan-400 font-mono underline">fluidcraftstudios@gmail.com</a>.
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex justify-end">
+          <button type="button" class="btn-primary-gradient px-6 py-2.5 rounded-xl font-heading font-semibold text-xs text-white" data-close-modal>
+            Understood
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-view 2: Delivery & Fulfillment Policy -->
+      <div id="modal-delivery-policy" class="hidden space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-xl text-white">Delivery & Fulfillment Policy</h3>
+            <p class="text-xs font-mono text-slate-400">Electronic Delivery of Digital Services</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-4">
+          <p>
+            <strong>Fluid Vector AR</strong> delivers digital mobile software and related in-app digital items. No physical shipment is required.
+          </p>
+
+          <h4 class="font-bold text-white uppercase font-mono text-xs text-emerald-300">1. Instant Electronic Delivery</h4>
+          <p>
+            Upon successful payment confirmation via our integrated payment gateway (e.g., Razorpay/UPI/Cards):
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Digital licenses, features, and Supporter Badges are provisioned electronically within the <strong>Fluid Vector AR</strong> mobile application immediately (typically within 0 to 60 seconds).</li>
+            <li>A digital invoice and payment receipt are automatically sent to your provided email address.</li>
+          </ul>
+
+          <h4 class="font-bold text-white uppercase font-mono text-xs text-emerald-300">2. Fulfillment Issues</h4>
+          <p>
+            If your transaction is completed successfully but your digital badge or tier status has not unlocked in the app within 10 minutes:
+          </p>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Ensure you are connected to the internet and restart the application.</li>
+            <li>Tap "Restore Purchases / Check Status" in App Settings.</li>
+            <li>If the issue persists, email your Transaction ID to <strong class="text-white">fluidcraftstudios@gmail.com</strong> for manual provisioning within 24 hours.</li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex justify-end">
+          <button type="button" class="btn-primary-gradient px-6 py-2.5 rounded-xl font-heading font-semibold text-xs text-white" data-close-modal>
+            Understood
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-view 3: Contact & Grievance Desk -->
+      <div id="modal-contact-details" class="hidden space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-xl text-white">Contact & Support Desk</h3>
+            <p class="text-xs font-mono text-slate-400">FluidCraft Studios Merchant Support</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-4">
+          <p>
+            For customer support, licensing queries, payment verification, bug reports, or legal notices:
+          </p>
+
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+            <div><span class="text-slate-400">Entity:</span> <strong class="text-white">FluidCraft Studios</strong></div>
+            <div><span class="text-slate-400">Founder & Lead:</span> <strong class="text-white">Ashwani Kumar</strong></div>
+            <div><span class="text-slate-400">Official Email:</span> <a href="mailto:fluidcraftstudios@gmail.com" class="text-cyan-400 underline">fluidcraftstudios@gmail.com</a></div>
+            <div><span class="text-slate-400">Support Hours:</span> <span class="text-slate-200">Monday - Friday (10:00 AM - 6:00 PM IST)</span></div>
+            <div><span class="text-slate-400">Standard Response SLA:</span> <span class="text-emerald-400">Within 24 to 48 Hours</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex justify-end">
+          <button type="button" class="btn-primary-gradient px-6 py-2.5 rounded-xl font-heading font-semibold text-xs text-white" data-close-modal>
+            Close
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub-view 4: Terms Summary -->
+      <div id="modal-terms-summary" class="hidden space-y-5">
+        <h3 class="font-heading font-bold text-xl text-white">Terms of Service Summary</h3>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Fluid Vector AR is provided by FluidCraft Studios for creative drawing and spatial tracing. Users retain 100% intellectual property ownership of all artwork created within the app.
+        </p>
+        <div class="pt-4">
+          <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/terms_and_conditions.html" target="_blank" rel="noopener noreferrer" class="btn-primary-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white">
+            <span>Read Full Terms of Service Document</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sub-view 5: Privacy Summary -->
+      <div id="modal-privacy-summary" class="hidden space-y-5">
+        <h3 class="font-heading font-bold text-xl text-white">Privacy Policy Summary</h3>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          We take creator privacy seriously. Fluid Vector AR stores your drawing vector paths locally on your device using SQLite/Room DB. Camera frames used for stencil tracing and Google ARCore are processed on-device in memory and never saved to external servers.
+        </p>
+        <div class="pt-4">
+          <a href="https://ashwanikd0123.github.io/fluid-vector-ar-legal-agreements/privacy_policy.html" target="_blank" rel="noopener noreferrer" class="btn-primary-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white">
+            <span>Read Full Privacy Policy Document</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: Creator Tip Jar Selector Modal
+       ======================================================================== -->
+  <div id="tip-jar-modal" class="modal-backdrop fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    
+    <div class="modal-dialog relative w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+      
+      <button id="close-tip-jar" type="button" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="text-center space-y-2">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500 to-cyan-400 mx-auto flex items-center justify-center text-white shadow-lg shadow-cyan-500/25">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <h3 class="font-heading font-extrabold text-2xl text-white">Creator Tip Jar</h3>
+        <p class="text-xs text-slate-300">
+          Fuel independent native Android development. Get an in-app supporter badge instantly!
+        </p>
+      </div>
+
+      <!-- Presets -->
+      <div class="space-y-3">
+        <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Choose Amount:</div>
+        <div class="grid grid-cols-3 gap-2.5">
+          <button type="button" class="tip-preset-btn p-3 rounded-xl border border-slate-700 bg-slate-800/60 font-heading font-bold text-slate-300 text-sm hover:border-cyan-400 transition-all text-center" data-amount="49">
+            ₹49
+          </button>
+          <button type="button" class="tip-preset-btn p-3 rounded-xl border border-cyan-400 bg-cyan-500/20 font-heading font-bold text-cyan-300 text-sm transition-all text-center" data-amount="99">
+            ₹99
+          </button>
+          <button type="button" class="tip-preset-btn p-3 rounded-xl border border-slate-700 bg-slate-800/60 font-heading font-bold text-slate-300 text-sm hover:border-cyan-400 transition-all text-center" data-amount="249">
+            ₹249
+          </button>
+        </div>
+
+        <div class="pt-1">
+          <label for="custom-tip-input" class="text-xs font-mono text-slate-400">Or Custom Amount (₹ INR):</label>
+          <input id="custom-tip-input" type="number" placeholder="Enter custom amount (e.g. 199)" class="w-full mt-1 px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-sm focus:border-cyan-400 focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Summary box -->
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex items-center justify-between text-xs font-mono">
+        <span class="text-slate-400">Selected Contribution:</span>
+        <span id="tip-summary-amount" class="text-cyan-400 font-bold text-base">₹99</span>
+      </div>
+
+      <button id="submit-tip-btn" type="button" class="w-full btn-primary-gradient py-3.5 rounded-xl font-heading font-bold text-white text-sm shadow-xl shadow-cyan-500/20">
+        Proceed to Secure Checkout
+      </button>
+
+      <div class="text-center text-[11px] font-mono text-slate-500">
+        UPI • Cards • NetBanking • Instant Electronic Receipt
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: Join Pro Waitlist Modal
+       ======================================================================== -->
+  <div id="waitlist-modal" class="modal-backdrop fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    
+    <div class="modal-dialog relative w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+      
+      <button id="close-waitlist-btn" type="button" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="text-center space-y-2">
+        <div class="w-14 h-14 rounded-2xl bg-purple-600/30 border border-purple-500/40 text-purple-300 mx-auto flex items-center justify-center">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-heading font-extrabold text-2xl text-white">Join Pro & AI Waitlist</h3>
+        <p class="text-xs text-slate-300">
+          Be the first to access Cloud Sync, AI Photo-to-Vector tracing, and team collaboration.
+        </p>
+      </div>
+
+      <form id="waitlist-form" class="space-y-4">
+        <div>
+          <label for="waitlist-email" class="text-xs font-mono text-slate-400">Your Email Address:</label>
+          <input id="waitlist-email" type="email" required placeholder="artist@example.com" class="w-full mt-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:border-purple-400 focus:outline-none">
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 font-heading font-bold text-white text-sm shadow-xl shadow-purple-600/20 transition-all">
+          Reserve Early Access
+        </button>
+      </form>
+
+      <div class="text-center text-[11px] font-mono text-slate-500">
+        No spam ever. You can unsubscribe anytime with one click.
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /**
  * Fluid Vector AR - Main Interactive Application Script
  * Controls mode switching, interactive reticle playground, policy modals,
- * tip jar selector, FAQ accordion, and navigation interactions.
+ * waitlist modal, FAQ accordion, and navigation interactions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initStudioTabs();
   initReticlePlayground();
   initPolicyModals();
-  initTipJarModal();
   initWaitlistModal();
   initFaqAccordion();
   initSmoothScroll();
@@ -254,95 +253,8 @@ function initPolicyModals() {
     });
   }
 }
-
 /* --------------------------------------------------------------------------
-   5. Creator Tip Jar Modal
-   -------------------------------------------------------------------------- */
-function initTipJarModal() {
-  const openBtns = document.querySelectorAll('.open-tip-jar-btn');
-  const tipModal = document.getElementById('tip-jar-modal');
-  const closeBtn = document.getElementById('close-tip-jar');
-  const tipOptions = document.querySelectorAll('.tip-preset-btn');
-  const customInput = document.getElementById('custom-tip-input');
-  const tipSubmitBtn = document.getElementById('submit-tip-btn');
-  const tipSummaryDisplay = document.getElementById('tip-summary-amount');
-
-  if (!tipModal) return;
-
-  let selectedAmount = '99';
-
-  const updateSelectedState = (amt) => {
-    selectedAmount = amt;
-    tipOptions.forEach(opt => {
-      if (opt.getAttribute('data-amount') === amt) {
-        opt.classList.add('border-cyan-400', 'bg-cyan-500/20', 'text-cyan-300');
-        opt.classList.remove('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
-      } else {
-        opt.classList.remove('border-cyan-400', 'bg-cyan-500/20', 'text-cyan-300');
-        opt.classList.add('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
-      }
-    });
-
-    if (tipSummaryDisplay) {
-      tipSummaryDisplay.textContent = `₹${amt}`;
-    }
-  };
-
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tipModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      updateSelectedState('99');
-    });
-  });
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      tipModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
-
-  tipModal.addEventListener('click', (e) => {
-    if (e.target === tipModal) {
-      tipModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  tipOptions.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const amt = btn.getAttribute('data-amount');
-      if (customInput) customInput.value = '';
-      updateSelectedState(amt);
-    });
-  });
-
-  if (customInput) {
-    customInput.addEventListener('input', (e) => {
-      const val = e.target.value.replace(/[^0-9]/g, '');
-      if (val && parseInt(val, 10) > 0) {
-        tipOptions.forEach(opt => {
-          opt.classList.remove('border-cyan-400', 'bg-cyan-500/20', 'text-cyan-300');
-          opt.classList.add('border-slate-700', 'bg-slate-800/60', 'text-slate-300');
-        });
-        selectedAmount = val;
-        if (tipSummaryDisplay) tipSummaryDisplay.textContent = `₹${val}`;
-      }
-    });
-  }
-
-  if (tipSubmitBtn) {
-    tipSubmitBtn.addEventListener('click', () => {
-      showToast(`Thank you for choosing to support Fluid Vector AR with ₹${selectedAmount}! Payment gateway connection will be active upon Google Play public rollout.`);
-      tipModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
-}
-
-/* --------------------------------------------------------------------------
-   6. Waitlist Modal
+   5. Waitlist Modal
    -------------------------------------------------------------------------- */
 function initWaitlistModal() {
   const waitlistBtns = document.querySelectorAll('.open-waitlist-btn');
